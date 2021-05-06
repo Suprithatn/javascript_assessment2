@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>Salary Calculation</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-xs-offset-3 border">
+                    <div class="row text-center heading">
+                        <h3 class="text-white">Salary Calculation</h3>
+                    </div>
+                    <div class="row">
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="username">Salary:</label>
+                                <input type="number" name="salary" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Shift:</label>
+                                <input type="number" name="shift" class="form-control">
+                            </div>
+                            <div class="form-group text-center">
+                                <button class="btn btn-primary" onclick="return calculateSalary()">Calculate</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+
+            function calculateSalary(){
+                var elementSalary = document.getElementsByName("salary")[0];
+                var elementShift = document.getElementsByName("shift")[0];
+                if( elementSalary.value.trim() === "" ){
+                    alert("Enter Salary!");
+                } else if ( elementSalary.value.trim() > 8000 ){
+                    alert("Salary too large!");
+                } else if ( elementSalary.value.trim() <= 0 ){
+                    alert("Salary too small!");
+                } else if( elementShift.value.trim() === "" ){
+                    alert("Enter Shift!");
+                } else if (elementShift.value.trim() < 0 ){
+                    alert("Shifts too small!");
+                } else {
+                    //after spending on Travel and food (20% + 30% = 50% = 0.5)
+                    var savings = elementSalary.value.trim() * 0.5;
+                    //by calculating shifts (2% every day = 0.02)
+                    savings = savings + (elementSalary.value.trim() * 0.02 * elementShift.value.trim());
+                    alert("Total Savings : " + savings);
+                }
+                return false;
+                
+            }
+
+        </script>
+    </body>
+</html>
